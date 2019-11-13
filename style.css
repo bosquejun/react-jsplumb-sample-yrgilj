@@ -9,7 +9,8 @@ h1, p {
         }
         
         .item {
-            height:80px; width: 80px;
-            border: 1px solid red;
+            height:65px; width: 65px;
+            border: 2px solid blue;
             float: left;
+            border-radius: 50px;
         }

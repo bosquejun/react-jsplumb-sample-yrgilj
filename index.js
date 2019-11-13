@@ -13,25 +13,28 @@ class App extends Component {
   componentDidMount() {
     jsPlumb.ready(function () {
       var els = document.querySelectorAll(".wrapper");
+      var item1 = document.querySelectorAll("#item1");
 
       var common = {
         isSource: true,
         isTarget: true,
         connector: "Straight",
-        endpoint: "Rectangle",
-        paintStyle: { fill: "white", outlineStroke: "blue", strokeWidth: 3 },
-        hoverPaintStyle: { outlineStroke: "lightblue" },
-        connectorStyle: { outlineStroke: "green", strokeWidth: 1 },
-        connectorHoverStyle: { strokeWidth: 2 },
+        endpoint: [ "Dot", { radius:5 } ],
+        paintStyle: { fill: "grey", outlineStroke: 5, outlineFill: "blue" },
+        // hoverPaintStyle: { outlineStroke: "lightblue" },
+        connectorStyle: { outlineStroke: "grey", strokeWidth: 1 },
+        connectorHoverStyle: { strokeWidth: 2 }
       };
-       jsPlumb.draggable("item_left");
       jsPlumb.addEndpoint("item_left", {
-        anchors: ["Right"]
+        anchors: ["Right"],
+        connector: "Flowchart"
       }, common);
       jsPlumb.addEndpoint("item_right", {
-        anchors: ["Right"]
+        anchors: ["Left"],
+        connector: "Flowchart"
       }, common);
-      //jsPlumb.draggable(els);
+      jsPlumb.draggable(item1);
+      
     });
   }
 
@@ -39,7 +42,7 @@ class App extends Component {
     return (
       <div id="diagramContainer">
           <div id="item_left" className="item"></div>
-          <div id="item_right" className="item" style={{ marginLeft: "50px" }}></div>
+          <div id="item_right" className="item" style={{ marginLeft: "50px", marginTop: 100 }}></div>
         
       </div>
     );
